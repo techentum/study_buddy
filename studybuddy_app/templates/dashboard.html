@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h2 class="mb-4">Dashboard</h2>
+        <a href="/general-practice" class="btn btn-primary">Start General Practice</a>
+        <hr>
+        <h4>Categories</h4>
+        <div class="list-group">
+            {% for category in categories %}
+                <a href="/category-practice/{{ category.id }}" class="list-group-item list-group-item-action">{{ category.name }}</a>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

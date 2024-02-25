@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h2 class="mb-4">General Practice Test</h2>
+        <form action="/submit-test" method="post">
+            {% for question in questions %}
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ loop.index }}. {{ question.question_text }}</h5>
+                        <div>
+                            {% for choice in question.choices.items() %}
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="question{{ question.id }}" id="choice{{ loop.index }}" value="{{ choice[0] }}">
+                                    <label class="form-check-label" for="choice{{ loop.index }}">
+                                        {{ choice[1] }}
+                                    </label>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-success">Submit Test</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
